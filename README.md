@@ -21,3 +21,5 @@ MARCH 4-9, 2019
 * User - Apply for Job
     * Form for application. (Details, Years of Experience, etc.)
     * Number of applicants are incremented after a User applies for that specific job.
+* Bonus
+    * Users who posted a job may be able to view the users that applied for that job.
