@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
-from .forms import UserRegisterForm
+from .forms import UserRegisterForm, UserLoginForm
 
 def index(request):
     if request.method == 'POST':
@@ -15,12 +15,16 @@ def index(request):
                 return redirect('index') 
         elif 'loginbtn' in request.POST:
             username = request.POST['username']
-            password = request.POST['password']
-            if form.is_valid():
-                user = authenticate(username=username, password=password)
-                if user is not None:
-                    login(request, user)
+            password = request.POST['password1']
+            form = UserLoginForm(request.POST)
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('home')
+            else:
+                return redirect('index')
 
     else:
-        form = UserRegisterForm()
-        return render(request, 'users/index.html', {'form': form})
+        regform = UserRegisterForm()
+        logform = UserLoginForm()
+        return render(request, 'users/index.html', {'regform': regform, 'logform': logform})

@@ -26,7 +26,7 @@
                         <div class="card-body">
                             <form method="POST">
                                 {% csrf_token %}
-                                {{ form|crispy }}
+                                {{ regform|crispy }}
                                 <div class="form-group">
                                     <button class="btn btn-outline-dark btn-block form-control" name="signupbtn" type="submit">Sign Up</button>
                                 </div>

@@ -34,7 +34,7 @@
                   <a class="nav-link js-scroll-trigger">Jobs</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link js-scroll-trigger">{{ firstname }} {{ lastname }}</a>
+                  <a class="nav-link js-scroll-trigger">{{ user.username }}</a>
                 </li> 
               </ul>
             {% else %}
@@ -42,10 +42,10 @@
                     <li class="nav-item px-2">
                         <form method="POST">
                         {% csrf_token %}
-                        {{form.username}}
+                        {{logform.username}}
                     </li>
                     <li class="nav-item px-2">
-                        {{form.password1}}
+                        {{logform.password1}}
                     </li>
                     <li class="nav-item px-2">
                         <button class="btn btn-outline-dark btn-block form-control" name="loginbtn" type="submit">Login</button>
