@@ -1,0 +1,194 @@
+{% extends 'job_platform/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-light fixed-top p-0" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">
+          <img src="{% static 'job_platform/images/jobhub.png'%}" class="d-inline-block align-middle" width="50px" height="50px">Job . Hub
+        </a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+              <li class="nav-item px-2">
+                  <form method="POST">
+                  {% csrf_token %}
+                  {{form.username}}
+              </li>
+              <li class="nav-item px-2">
+                  {{form.password1}}
+              </li>
+              <li class="nav-item px-2">
+                  <button class="btn btn-outline-dark btn-block form-control" name="loginbtn" type="submit">Login</button>
+                </form>
+              </li>
+          </ul>
+        
+          <!-- 
+            <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#about">About me</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#skills">Skills</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+          </li> 
+          </ul>
+        -->  
+      </div>
+    </div>
+  </nav>
+
+  <header class="masthead d-flex">
+    <div class="container card-alignment">
+        <div class="row">
+            <div class="col-lg-5 mx-auto">
+                <div class="content-section">
+                    <div class="card">
+                        <div class="card-header card-header-dark text-center">
+                          <div class="container">
+                            <div class="row">
+                              <div class="container">
+                                <img src="{% static 'job_platform/images/jobhub.png'%}" class="d-inline-block align-middle" width="50px" height="50px">
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="container">
+                                  Join the Hub!
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card-body">
+                            <form method="POST">
+                                {% csrf_token %}
+                                {{ form|crispy }}
+                                <div class="form-group">
+                                    <button class="btn btn-outline-dark btn-block form-control" name="signupbtn" type="submit">Sign Up</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>
+
+        <!-- Footer -->
+<!-- Footer -->
+<footer class="page-footer font-small mdb-color lighten-3 pt-4 fixed-bottom">
+
+        <!-- Footer Elements -->
+        <div class="container">
+      
+          <!--Grid row-->
+          <div class="row">
+      
+            <!--Grid column-->
+            <div class="col-lg-2 col-md-12 mb-4">
+      
+              <!--Image-->
+              <div class="view overlay z-depth-1-half">
+                <img src="{% static 'job_platform/images/footer1.jpg'%}" class="img-fluid" alt="">
+                <a href="">
+                  <div class="mask rgba-white-light"></div>
+                </a>
+              </div>
+      
+            </div>
+            <!--Grid column-->
+      
+            <!--Grid column-->
+            <div class="col-lg-2 col-md-6 mb-4">
+      
+              <!--Image-->
+              <div class="view overlay z-depth-1-half">
+                <img src="{% static 'job_platform/images/footer4.jpg'%}" class="img-fluid" alt="">
+                <a href="">
+                  <div class="mask rgba-white-light"></div>
+                </a>
+              </div>
+      
+            </div>
+            <!--Grid column-->
+      
+            <!--Grid column-->
+            <div class="col-lg-2 col-md-6 mb-4">
+      
+              <!--Image-->
+              <div class="view overlay z-depth-1-half">
+                <img src="{% static 'job_platform/images/footer5.jpg'%}" class="img-fluid" alt="">
+                <a href="">
+                  <div class="mask rgba-white-light"></div>
+                </a>
+              </div>
+      
+            </div>
+            <!--Grid column-->
+      
+            <!--Grid column-->
+            <div class="col-lg-2 col-md-12 mb-4">
+      
+              <!--Image-->
+              <div class="view overlay z-depth-1-half">
+                <img src="{% static 'job_platform/images/footer6.jpg'%}" class="img-fluid" alt="">
+                <a href="">
+                  <div class="mask rgba-white-light"></div>
+                </a>
+              </div>
+      
+            </div>
+            <!--Grid column-->
+      
+            <!--Grid column-->
+            <div class="col-lg-2 col-md-6 mb-4">
+      
+              <!--Image-->
+              <div class="view overlay z-depth-1-half">
+                <img src="{% static 'job_platform/images/footer2.jpg'%}" class="img-fluid" alt="">
+                <a href="">
+                  <div class="mask rgba-white-light"></div>
+                </a>
+              </div>
+      
+            </div>
+            <!--Grid column-->
+      
+            <!--Grid column-->
+            <div class="col-lg-2 col-md-6 mb-4">
+      
+              <!--Image-->
+              <div class="view overlay z-depth-1-half">
+                <img src="{% static 'job_platform/images/footer3.jpg'%}" class="img-fluid" alt="">
+                <a href="">
+                  <div class="mask rgba-white-light"></div>
+                </a>
+              </div>
+      
+            </div>
+            <!--Grid column-->
+      
+          </div>
+          <!--Grid row-->
+      
+        </div>
+        <!-- Footer Elements -->
+      
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">© Copyright:
+          <a class="copyright" href="#"> jobhub.com</a>
+        </div>
+        <!-- Copyright -->
+      
+      </footer>
+      <!-- Footer -->
+{% endblock %}
