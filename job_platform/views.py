@@ -1,4 +1,4 @@
 from django.shortcuts import render
 
-def signup(request):
+def index(request):
     return render(request, 'users/index.html')

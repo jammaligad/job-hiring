@@ -3,5 +3,5 @@ from . import views
 from users import views as user_views
 
 urlpatterns = [
-    path('', user_views.signup, name="index-signup"),
+    path('', user_views.index, name="index-signup"),
 ]

@@ -9,9 +9,53 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'job_platform/css/jobhub.css' %}" />
-    <title>Hello, world!</title>
+    {% if user.is_authenticated %}
+      <title>Job . Hub | {{ title }}</title>
+    {% else %}
+      <title>Job . Hub</title>
+    {% endif %}
   </head>
   <body>
+      <nav class="navbar navbar-expand-lg navbar-light fixed-top p-0" id="mainNav">
+          <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top">
+                <img src="{% static 'job_platform/images/jobhub.png'%}" class="d-inline-block align-middle" width="50px" height="50px">Job . Hub
+              </a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+            {% if user.is_authenticated %}
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                  <a class="nav-link js-scroll-trigger">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link js-scroll-trigger">Jobs</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link js-scroll-trigger">{{ firstname }} {{ lastname }}</a>
+                </li> 
+              </ul>
+            {% else %}
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item px-2">
+                        <form method="POST">
+                        {% csrf_token %}
+                        {{form.username}}
+                    </li>
+                    <li class="nav-item px-2">
+                        {{form.password1}}
+                    </li>
+                    <li class="nav-item px-2">
+                        <button class="btn btn-outline-dark btn-block form-control" name="loginbtn" type="submit">Login</button>
+                      </form>
+                    </li>
+                </ul>
+            </div>
+            {% endif %}
+          </div>
+        </nav>
     {% block content %} {% endblock %}
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
