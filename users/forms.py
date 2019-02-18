@@ -47,6 +47,9 @@ class UserLoginForm(UserCreationForm):
                 'class': 'form-control'
             })
 
+        self.fields['username'].widget.attrs['placeholder'] = 'Username'
+        self.fields['password1'].widget.attrs['placeholder'] = 'Password'
+
     class Meta:
         model = User
         fields = ['username', 'password1']
