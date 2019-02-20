@@ -3,34 +3,56 @@
 
 {% block content %}
 <div class="container" id="home">
-    <div class="row">
+    <div class="row mb-4">
         <div class="col-lg-8">
             <div class="card">
                 <div class="card-header text-faded bg-dark">
-                    <h6 style="border-left: 5px solid rgb(200, 200, 200); margin-bottom: 0rem;" class="p-2">Job Categories</h6>
+                    <h6 style="border-left: 5px solid rgb(200, 200, 200); margin-bottom: 0rem;" class="p-2">Featured Jobs</h6>
                 </div>
-                <div class="card-body">
-                    <div class="row p-3">
-                        <div class="col-md-6">
-                            <img src="{% static 'job_platform/images/footer1.jpg'%}" class="img-fluid" alt="">
+                <div class="container-fluid p-0 m-0">
+                    <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="{% static 'job_platform/images/google.jpg'%}" class="d-block w-100" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                            <h5>Google Software Engineer</h5>
+                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <img src="{% static 'job_platform/images/footer2.jpg'%}" class="img-fluid" alt="">
+                        <div class="carousel-item">
+                            <img src="{% static 'job_platform/images/footer2.jpg'%}" class="d-block w-100" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                            <h5>Featured Job #2</h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row p-3">
-                        <div class="col-md-6">
-                            <img src="{% static 'job_platform/images/footer3.jpg'%}" class="img-fluid" alt="">
+                        <div class="carousel-item">
+                            <img src="{% static 'job_platform/images/footer3.jpg'%}" class="d-block w-100" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                            <h5>Featured Job #3</h5>
+                            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <img src="{% static 'job_platform/images/footer4.jpg'%}" class="img-fluid" alt="">
                         </div>
+                        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-lg-4">
-            <div class="card">
+            <div class="card position-fixed" style="min-width: 340px;">
                 <div class="card-header text-faded bg-dark">
                     <h6 style="border-left: 5px solid rgb(200, 200, 200); margin-bottom: 0rem;" class="p-2">Latest Jobs Posted</h6>
                 </div>
@@ -42,5 +64,55 @@
             </div>
         </div>
     </div>
+    <div class="row mb-4">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header text-faded bg-dark">
+                    <h6 style="border-left: 5px solid rgb(200, 200, 200); margin-bottom: 0rem;" class="p-2">Job Categories</h6>
+                </div>
+                <div class="card-body">
+                    <div class="row p-3">
+                        <div class="col-md-4">
+                            <img src="{% static 'job_platform/images/footer1.jpg'%}" class="img-fluid" alt="">
+                        </div>
+                        <div class="col-md-4">
+                            <img src="{% static 'job_platform/images/footer2.jpg'%}" class="img-fluid" alt="">
+                        </div>
+                        <div class="col-md-4">
+                            <img src="{% static 'job_platform/images/footer2.jpg'%}" class="img-fluid" alt="">
+                        </div>
+                    </div>
+                    <div class="row p-3">
+                        <div class="col-md-4">
+                            <img src="{% static 'job_platform/images/footer3.jpg'%}" class="img-fluid" alt="">
+                        </div>
+                        <div class="col-md-4">
+                            <img src="{% static 'job_platform/images/footer4.jpg'%}" class="img-fluid" alt="">
+                        </div>
+                        <div class="col-md-4">
+                            <img src="{% static 'job_platform/images/footer2.jpg'%}" class="img-fluid" alt="">
+                        </div>
+                    </div>
+                    <div class="row p-3">
+                        <div class="col-md-4">
+                            <img src="{% static 'job_platform/images/footer3.jpg'%}" class="img-fluid" alt="">
+                        </div>
+                        <div class="col-md-4">
+                            <img src="{% static 'job_platform/images/footer4.jpg'%}" class="img-fluid" alt="">
+                        </div>
+                        <div class="col-md-4">
+                            <img src="{% static 'job_platform/images/footer2.jpg'%}" class="img-fluid" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<footer class="page-footer font-small mdb-color lighten-3 fixed-bottom">
+    <div class="footer-copyright text-center py-3">© Copyright:
+        <a class="copyright" href="{% url 'home' %}"> jobhub.com</a>
+    </div>
+</footer>
 {% endblock %}
