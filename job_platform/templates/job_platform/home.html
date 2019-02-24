@@ -5,8 +5,17 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-4">
-
         </div>
     </div>
+
 </div>
+<a style="top:20%;position:absolute" href ="{% url 'job_platform:create_job' %}">Post a Job</a>
+<ul style="top:30%;position:absolute">
+{% for j in Jobs %}
+  <li>
+  {{ j.position }} at {{j.company}}</br>
+  Poster: {{ j.user.username }}
+  </li>
+{% endfor %}
+</ul>
 {% endblock %}

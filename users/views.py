@@ -12,7 +12,7 @@ def index(request):
                 form.save()
                 username = form.cleaned_data.get('username')
                 messages.success(request, f'Your account has been created! You may now login.')
-                return redirect('index') 
+                return redirect('index')
         elif 'loginbtn' in request.POST:
             username = request.POST['username']
             password = request.POST['password1']
@@ -20,9 +20,9 @@ def index(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('home')
+                return redirect('/home')
             else:
-                return redirect('index')
+                return redirect('/index')
 
     else:
         regform = UserRegisterForm()

@@ -4,4 +4,4 @@ from .models import Job, Post, Apply
 class JobModelForm(ModelForm):
     class Meta:
         model = Job
-        exclude = ['id']
+        exclude = ['id','user']
