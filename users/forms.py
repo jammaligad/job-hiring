@@ -33,24 +33,3 @@ class UserRegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email', 'password1']
-
-
-class UserLoginForm(UserCreationForm):
-    def __init__(self, *args, **kwargs):
-        super(UserLoginForm, self).__init__(*args, **kwargs)
-
-        self.fields.pop('password2')
-        for fieldname in ['username', 'password1']:
-            self.fields[fieldname].help_text = None
-
-        for field in iter(self.fields):
-            self.fields[field].widget.attrs.update({
-                'class': 'form-control'
-            })
-
-        self.fields['username'].widget.attrs['placeholder'] = 'Username'
-        self.fields['password1'].widget.attrs['placeholder'] = 'Password'
-
-    class Meta:
-        model = User
-        fields = ['username', 'password1']

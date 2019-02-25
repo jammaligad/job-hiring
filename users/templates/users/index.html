@@ -8,10 +8,10 @@
         {% if messages %}
         {% for message in messages %}
         <div class="d-flex justify-content-center align-items-center">
-          <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
-            <div class="toast-header">
-              <img src="{% static 'job_platform/images/jobhub.png' %}" width="20px" height="20px" />
-              <strong class="mr-auto">Welcome to the Hub!</strong>
+          <div class="toast" id="toast-{{ message.tags }}" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
+            <div class="toast-header" id="toast-{{ message.tags }}">
+              <img src="{% static 'job_platform/images/jobhub.png' %}" width="25px" height="25px" />
+              <strong class="mr-auto d-inline-block align-middle mr-auto">{{ messagesheader }}</strong>
               <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -45,8 +45,11 @@
                             <form method="POST">
                                 {% csrf_token %}
                                 {{ regform|crispy }}
+                                <div class="form-group text-center">
+                                    <small class="text-muted">By clicking Join now, you agree to the Job Hub User Agreement, Privacy Policy, and Cookie Policy.</small>
+                                </div>
                                 <div class="form-group">
-                                    <button class="btn btn-outline-dark btn-block form-control" name="signupbtn" type="submit">Sign Up</button>
+                                    <button class="btn btn-outline-dark btn-block form-control" name="signupbtn" type="submit">Join Now</button>
                                 </div>
                             </form>
                         </div>

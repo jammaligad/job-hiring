@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="{% static 'job_platform/css/jobhub.css' %}" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"/>
+    <title>Job . Hub</title>
+  </head>
+  <body>
+
+    <header class="mastheadlogin d-flex">
+    <div class="container my-auto p-5" id="login-box">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="d-flex justify-content-center align-items-center">
+            <div class="toast" id="toast-{{ message.tags }}" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
+            <div class="toast-header" id="toast-{{ message.tags }}">
+                <img src="{% static 'job_platform/images/jobhub.png' %}" width="25px" height="25px" />
+                <strong class="d-inline-block align-middle mr-auto">{{ messagesheader }}</strong>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="toast-body">
+                {{ message }}
+            </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+        <div class="row">
+            <div class="col-lg-5 mx-auto">
+                <div class="content-section">
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                                <a href="{% url 'index' %}"><img src="{% static 'job_platform/images/jobhub.png' %}" class="mx-auto d-block" width="200px" height="200px" /></a>
+                            <p class="mx-auto d-block text-center">Welcome Back!</p>
+                        </div>
+                    </div>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="mb-4">
+                        {{ regform.username }}
+                        </div>
+                        <div class="mb-4">
+                        {{ regform.password1 }}
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-outline-dark btn-block form-control" name="loginbtn" type="submit">Login</button>
+                        </div>
+                        <div class="form-group text-center">
+                            <a href="{% url 'signup' %}"><small class="text-muted">Don't have an account? Click here to join.</small></a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>
+
+    <footer class="page-footer font-small mdb-color lighten-3 fixed-bottom">
+        <div class="footer-copyright text-center py-3">© Copyright:
+            <a class="copyright" href="{% url 'home' %}"> jobhub.com</a>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="{% static 'job_platform/js/jobhub.js' %}" type="text/javascript"></script>
+    </body>
+</html>

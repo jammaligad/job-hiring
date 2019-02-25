@@ -321,6 +321,50 @@ header.masthead p {
   }
 }
 
+/* LOGIN */
+
+header.mastheadlogin {
+  padding-top: 10rem;
+  padding-bottom: calc(10rem - 56px);
+}
+
+header.mastheadlogin hr {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+header.mastheadlogin h1 {
+  font-size: 2rem;
+}
+
+header.mastheadlogin p {
+  font-weight: 300;
+}
+
+@media (min-width: 768px) {
+  header.mastheadlogin p {
+    font-size: 1.15rem;
+  }
+}
+
+@media (min-width: 992px) {
+  header.mastheadlogin {
+    height: 100vh;
+    min-height: 650px;
+    padding-top: 0;
+    padding-bottom: 10%;
+  }
+  header.mastheadlogin h1 {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  header.mastheadlogin h1 {
+    font-size: 4rem;
+  }
+}
+
 .page-footer {
     background-color: rgb(50,50,50) !important;
 }
@@ -344,7 +388,7 @@ header.masthead p {
 }
 
 .card-alignment {
-  margin-top: 10% !important;
+  margin-top: 8% !important;
 }
 
 .toast {
@@ -352,8 +396,22 @@ header.masthead p {
   z-index: 9999;
 }
 
-.toast-header, .toast-body {
-  background-color: rgba(220, 255, 236, 0.7);
+#toast-success {
+  background-color: rgba(220, 255, 236, 0.6) !important;
+}
+
+#toast-error {
+  background-color: rgba(248, 215, 215, 0.6) !important;
+}
+
+#toast-warning {
+  background-color: rgba(255, 249, 217, 0.6) !important;
+}
+
+#login-box {
+  border: 1px solid grey;
+  background-color: rgba(250, 250, 250, 0.5) !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .dropdown-menu {
