@@ -272,7 +272,7 @@ img::-moz-selection {
 
 /* ---------------------------- */
 
-#home {
+#home, #jobs {
   margin-top: 5%;
 }
 
@@ -412,6 +412,10 @@ header.mastheadlogin p {
   border: 1px solid grey;
   background-color: rgba(250, 250, 250, 0.5) !important;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#sidebar-footer {
+  background-color: rgb(250, 250, 250);
 }
 
 .dropdown-menu {

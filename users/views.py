@@ -5,7 +5,6 @@ from django.contrib.auth import authenticate, login as jh_login, logout
 from .forms import UserRegisterForm
 
 def index(request):
-    messagesheader = ''
     if request.method == 'POST':
         if 'signupbtn' in request.POST:
             form = UserRegisterForm(request.POST)
@@ -39,7 +38,6 @@ def index(request):
         return render(request, 'users/index.html', {'regform': regform})
 
 def login(request):
-    messagesheader = ''
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password1']
@@ -58,7 +56,6 @@ def login(request):
         return render(request, 'users/login.html', {'regform': form})
 
 def signup(request):
-    messagesheader = ''
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
@@ -67,6 +64,11 @@ def signup(request):
             messages.success(request, f'Your account has been created! You may now login.')
             messagesheader = 'Welcome to the Hub!'
             return redirect('login')
+        else:
+            messages.warning(request, f'Warning! Please try again.')
+            messagesheader = 'Warning'
+            form = UserRegisterForm()
+            return render(request, 'users/signup.html', {'regform': form})
     else:
         form = UserRegisterForm()
         return render(request, 'users/signup.html', {'regform': form})

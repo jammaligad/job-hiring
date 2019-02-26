@@ -3,8 +3,10 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def home(request):
-    return render(request, 'job_platform/home.html')
+    title = 'Home'
+    return render(request, 'job_platform/home.html', {'title': title})
 
 @login_required
 def jobs(request):
-    return render(request, 'job_platform/jobs.html')
+    title = 'Jobs'
+    return render(request, 'job_platform/jobs.html', {'title': title})
