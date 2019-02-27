@@ -11,7 +11,7 @@ def create_job(request):
     context = {}
     context['form'] = JobModelForm()
     if request.method == 'POST':
-        form = JobModelForm(request.POST)
+        form = JobModelForm(request.POST,request.FILES)
         if form.is_valid():
             instance = form.save(commit=False)
             instance.user = request.user

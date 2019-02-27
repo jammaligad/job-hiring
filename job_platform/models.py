@@ -7,7 +7,7 @@ class Job(models.Model):
     position = models.CharField(max_length=100)
     company = models.CharField(max_length=100)
     description = models.TextField()
-    image = models.ImageField(upload_to='media/images', blank=True, null=True)
+    image = models.ImageField(upload_to='media/images/', blank=True, null=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,blank=True, null=True)
 
     def __str__(self):

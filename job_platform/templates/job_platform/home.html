@@ -13,8 +13,11 @@
 <ul style="top:30%;position:absolute">
 {% for j in Jobs %}
   <li>
-  {{ j.position }} at {{j.company}}</br>
-  Poster: {{ j.user.username }}
+  {{ j.position }} at {{j.company}}<br/>
+  Poster: {{ j.user.username }}<br/>
+  {% if j.image %}
+    <img src="{{ j.image.url }}" alt="img" style="height:200px;width:200px"/>
+  {% endif %}
   </li>
 {% endfor %}
 </ul>
