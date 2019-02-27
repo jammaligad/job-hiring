@@ -40,7 +40,10 @@
                     <div class="row mb-4">
                         <div class="col-md-12">
                             <a href="{% url 'index' %}"><img src="{% static 'job_platform/images/jobhub.png' %}" class="mx-auto d-block" width="200px" height="200px" /></a>
-                            <p class="mx-auto d-block text-center">The Future is Now! Join the Hub!</p>
+                            <p class="mx-auto d-block text-center mb-0">The Future is Now! Join the Hub!</p>
+                            <div class="form-group text-center mb-0 mt-0">
+                                <a href="{% url 'login' %}"><small class="text-muted">Already have an account? Click here to login.</small></a>
+                            </div>
                         </div>
                     </div>
                     <form method="POST">

@@ -5,7 +5,7 @@
 <div class="container" id="home">
     <div class="row mb-4">
         <div class="col-lg-8">
-            <div class="card">
+            <div class="card" id="cards">
                 <div class="card-header p-0">
                     <p class="p-2 mb-0">Featured . Jobs</p>
                 </div>
@@ -52,7 +52,7 @@
             </div>
         </div>
         <div class="col-lg-4">
-            <div class="card position-fixed" style="min-width: 340px;">
+            <div class="card position-fixed" id="cards" style="min-width: 340px;">
                 <div class="card-header text-faded bg-dark">
                     <h6 style="border-left: 5px solid rgb(200, 200, 200);" class="p-2 mb-0">Latest Jobs Posted</h6>
                 </div>
@@ -67,7 +67,7 @@
     </div>
     <div class="row mb-4">
         <div class="col-lg-8">
-            <div class="card">
+            <div class="card" id="cards">
                 <div class="card-header p-0">
                     <p class="p-2 mb-0">Job . Categories</p>
                 </div>
@@ -109,11 +109,8 @@
             </div>
         </div>
     </div>
+
+
 </div>
 
-<footer class="page-footer font-small mdb-color lighten-3 fixed-bottom">
-    <div class="footer-copyright text-center py-3">© Copyright:
-        <a class="copyright" href="{% url 'home' %}"> jobhub.com</a>
-    </div>
-</footer>
 {% endblock %}
