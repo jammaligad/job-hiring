@@ -5,10 +5,11 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <link rel="icon" href="{% static 'job_platform/images/jobhub.png' %}">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
     <link rel="stylesheet" href="{% static 'job_platform/css/jobhub.css' %}" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"/>
     {% if user.is_authenticated %}
       <title>Job . Hub | {{ title }}</title>
     {% else %}
@@ -16,9 +17,13 @@
     {% endif %}
   </head>
   <body>
+    {% if user.is_authenticated %}
+      <nav class="navbar navbar-expand-lg navbar-light fixed-top p-0" id="mainNav2">
+    {% else %}
       <nav class="navbar navbar-expand-lg navbar-light fixed-top p-0" id="mainNav">
+    {% endif %}
           <div class="container">
-            <a class="navbar-brand js-scroll-trigger" href="#page-top">
+            <a class="navbar-brand js-scroll-trigger" href="{% url 'home' %}">
                 <img src="{% static 'job_platform/images/jobhub.png'%}" class="d-inline-block align-middle" width="50px" height="50px">Job . Hub
               </a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,25 +32,68 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
             {% if user.is_authenticated %}
             <ul class="navbar-nav ml-auto">
+                {% with url_name=request.resolver_match.url_name %}
                 <li class="nav-item">
-                  <a class="nav-link js-scroll-trigger">Home</a>
+                  <a class="nav-link {% if url_name == 'home' %}active{% endif %} js-scroll-trigger" href="{% url 'home' %}">
+                    <i class="fas fa-home fa-lg"></i>
+                    <span style="display: block;">Home</span>
+                  </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link js-scroll-trigger">Jobs</a>
+                  <a class="nav-link {% if url_name == 'jobs' %}active{% endif %} js-scroll-trigger" href="{% url 'jobs' %}">
+                    <i class="far fa-newspaper fa-lg"></i>
+                    <span style="display: block;">Jobs</span>
+                  </a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link js-scroll-trigger">{{ user.username }}</a>
-                </li> 
+                {% endwith %}
+                <li class="nav-item p-2">
+                  <div style="border-left:1px solid rgb(100, 100, 100);height: 100%;"></div>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link js-scroll-trigger" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="far fa-address-card fa-lg"></i>
+                    <span style="display: block;">Me <i class="fas fa-caret-down"></i></span>
+                  </a>
+                  <div class="dropdown-menu dropwdown-menu-left" aria-labelledby="dropdownMenuLink">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-sm-3">
+                            <i class="fas fa-user-circle fa-2x"></i>
+                        </div>
+                        <div class="col-sm-9 p-0">
+                          <div class="row">
+                            <div class="col-sm-12">
+                              <b>{{user.first_name}} {{user.last_name}}</b>
+                            </div>
+                          </div>
+                          <div class="row user-menu-text">
+                            <div class="col-sm-12">
+                              Job Hub User
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{% url 'index' %}" name="logoutbtn">Sign out</a>
+                  </div>
+                </li>
+                <li class="nav-item p-2">
+                  <div style="border-left:1px solid rgb(100, 100, 100);height: 100%;"></div>
+                </li>
+                <li class="nav-item ml-2 my-auto">
+                  <a href="{% url 'createjob' %}" class="nav-link btn btn-outline-light" role="button" aria-pressed="true">Post Job</a>
+                </li>
               </ul>
             {% else %}
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item px-2">
                         <form method="POST">
                         {% csrf_token %}
-                        {{logform.username}}
+                        {{regform.username}}
                     </li>
                     <li class="nav-item px-2">
-                        {{logform.password1}}
+                        {{regform.password1}}
                     </li>
                     <li class="nav-item px-2">
                         <button class="btn btn-outline-dark btn-block form-control" name="loginbtn" type="submit">Login</button>
@@ -57,10 +105,10 @@
           </div>
         </nav>
     {% block content %} {% endblock %}
-    
-    <script src="{% static 'job_platform/js/jobhub.js' %}"> </script>   
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="{% static 'job_platform/js/jobhub.js' %}" type="text/javascript"></script>
   </body>
 </html>

@@ -1,0 +1,85 @@
+{% extends 'job_platform/base.html' %}
+{% load static %}
+{% load job_platform_tags %}
+
+{% block content %}
+<div class="container" id="jobs">
+    <div class="row mb-4">
+        <div class="col-lg-12">
+            <div class="card" id="cards">
+                <div class="card-header text-center p-0">
+                    <p class="p-2 mb-0">Categories</p>
+                </div>
+                <div class="card-body">
+                    <div class="row p-3">
+                        <div class="col-sm-2">
+                            <img src="{% static 'job_platform/images/footer1.jpg'%}" class="img-fluid" alt="">
+                        </div>
+                        <div class="col-sm-2">
+                            <img src="{% static 'job_platform/images/footer2.jpg'%}" class="img-fluid" alt="">
+                        </div>
+                        <div class="col-sm-2">
+                            <img src="{% static 'job_platform/images/footer2.jpg'%}" class="img-fluid" alt="">
+                        </div>
+                        <div class="col-sm-2">
+                            <img src="{% static 'job_platform/images/footer2.jpg'%}" class="img-fluid" alt="">
+                        </div>
+                        <div class="col-sm-2">
+                            <img src="{% static 'job_platform/images/footer2.jpg'%}" class="img-fluid" alt="">
+                        </div>
+                        <div class="col-sm-2">
+                            <img src="{% static 'job_platform/images/footer2.jpg'%}" class="img-fluid" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-4">
+            <div class="col-lg-12">
+                <div class="card" id="cards">
+                    <div class="card-header text-center p-0">
+                        <p class="p-2 mb-0">Job Listings</p>
+                    </div>
+                    <div class="card-body">
+                        {% if jobs %}
+                            {% for post in jobs %}
+                                {% if forloop.counter|modulo:4 == 1 %}
+                                    <div class="row p-3">
+                                {% endif %}
+                                    <div class="col-sm-3">
+                                        <a href="#">
+                                            <div class="card" id="jobcards">
+                                                <div class="card-body">
+                                                    <div class="d-flex align-items-end flex-column">
+                                                        <i class="fas fa-ellipsis-h fa-sm"></i>
+                                                    </div> 
+                                                    <h5 class="card-title">{{ post.title }}</h5>
+                                                    <h6 class="card-subtitle mb-2 text-muted">{{ post.timestamp }}</h6>
+                                                    <p class="card-text">
+                                                        Posted by: <br/>
+                                                        {{ post.author.first_name }} {{ post.author.last_name }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                {% if forloop.last or forloop.counter|modulo:4 == 0 %}
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <div class="row p-3">
+                                <div class="col-sm-12">
+                                    <div class="container text-center">
+                                        <p>No available Job Listings.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+{% endblock %}

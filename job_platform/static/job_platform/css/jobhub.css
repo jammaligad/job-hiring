@@ -25,7 +25,8 @@ a {
 }
 
 a:hover {
-  color: rgb(255, 255, 255);
+  color: rgb(50, 50, 50);
+  text-decoration:none;
 }
 
 a.copyright {
@@ -50,7 +51,7 @@ h6 {
 }
 
 .bg-dark {
-  background-color: #212529 !important;
+  background-color: rgb(50, 50, 50) !important;
 }
 
 .text-faded {
@@ -90,6 +91,14 @@ img::selection {
 img::-moz-selection {
   color: #fff;
   background: transparent;
+}
+
+#mainNav2 .nav-link.active {
+  /*
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-radius: 1px;
+  */
+  border-bottom: 3px solid white;
 }
 
 #mainNav {
@@ -177,6 +186,102 @@ img::-moz-selection {
   }
 }
 
+/* NAVBAR ON AUTHENTICATED LOGIN */
+
+#mainNav2 {
+  background-color: rgb(50, 50, 50);
+  font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+#mainNav2 .navbar-brand {
+  font-weight: 700;
+  text-transform: uppercase;
+  color: rgb(26, 26, 26);
+  font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+}
+
+#mainNav2 .navbar-brand:focus, #mainNav2 .navbar-brand:hover {
+  color: rgb(26, 26, 26);
+}
+
+#mainNav2 .navbar-nav > li.nav-item > a.nav-link,
+#mainNav2 .navbar-nav > li.nav-item > a.nav-link:focus {
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #212529;
+}
+
+#mainNav2 .navbar-nav > li.nav-item > a.nav-link:hover,
+#mainNav2 .navbar-nav > li.nav-item > a.nav-link:focus:hover {
+  color: rgb(26, 26, 26);
+}
+
+#mainNav2 .navbar-nav > li.nav-item > a.nav-link.active,
+#mainNav2 .navbar-nav > li.nav-item > a.nav-link:focus.active {
+  color: rgb(220, 220, 220) !important;
+  background-color: rgb(50, 50, 50);
+}
+
+#mainNav2 .navbar-nav > li.nav-item > a.nav-link.active:hover,
+#mainNav2 .navbar-nav > li.nav-item > a.nav-link:focus.active:hover {
+  background-color: transparent;
+}
+
+@media (min-width: 992px) {
+  #mainNav2 {
+    border-color: rgba(180, 180, 180, 0.5);
+    background-color: rgb(50, 50, 50);
+  }
+  #mainNav2 .navbar-brand {
+    color: #fff;
+  }
+  #mainNav2 .navbar-brand:focus, #mainNav2 .navbar-brand:hover {
+    color: #fff;
+  }
+  #mainNav2 .navbar-nav > li.nav-item > a.nav-link {
+    padding: 0.5rem 1rem;
+    text-align: center;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  #mainNav2 .navbar-nav > li.nav-item > a.nav-link,
+  #mainNav2 .navbar-nav > li.nav-item > a.nav-link:focus {
+    color: #fff;
+  }
+  
+  #mainNav2 .navbar-nav > li.nav-item > a.nav-link:hover,
+  #mainNav2 .navbar-nav > li.nav-item > a.nav-link:focus:hover {
+    color: rgb(185, 185, 185);
+  }
+  
+  #mainNav2.navbar-shrink {
+    border-bottom: 1px solid rgba(33, 37, 41, 0.1);
+    background-color: rgb(50, 50, 50);
+  }
+  #mainNav2.navbar-shrink .navbar-brand {
+    color: rgb(26, 26, 26);
+  }
+  #mainNav2.navbar-shrink .navbar-brand:focus, #mainNav2.navbar-shrink .navbar-brand:hover {
+    color: rgb(26, 26, 26);
+  }
+  #mainNav2.navbar-shrink .navbar-nav > li.nav-item > a.nav-link,
+  #mainNav2.navbar-shrink .navbar-nav > li.nav-item > a.nav-link:focus {
+    color: #212529;
+  }
+  #mainNav2.navbar-shrink .navbar-nav > li.nav-item > a.nav-link:hover,
+  #mainNav2.navbar-shrink .navbar-nav > li.nav-item > a.nav-link:focus:hover {
+    color: rgb(26, 26, 26);
+  }
+}
+
+/* ---------------------------- */
+
+#home, #jobs {
+  margin-top: 5%;
+}
+
 header.masthead {
   padding-top: 10rem;
   padding-bottom: calc(10rem - 56px);
@@ -222,6 +327,50 @@ header.masthead p {
   }
 }
 
+/* LOGIN */
+
+header.mastheadlogin {
+  padding-top: 10rem;
+  padding-bottom: calc(10rem - 56px);
+}
+
+header.mastheadlogin hr {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+header.mastheadlogin h1 {
+  font-size: 2rem;
+}
+
+header.mastheadlogin p {
+  font-weight: 300;
+}
+
+@media (min-width: 768px) {
+  header.mastheadlogin p {
+    font-size: 1.15rem;
+  }
+}
+
+@media (min-width: 992px) {
+  header.mastheadlogin {
+    height: 100vh;
+    min-height: 650px;
+    padding-top: 0;
+    padding-bottom: 10%;
+  }
+  header.mastheadlogin h1 {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  header.mastheadlogin h1 {
+    font-size: 4rem;
+  }
+}
+
 .page-footer {
     background-color: rgb(50,50,50) !important;
 }
@@ -245,6 +394,59 @@ header.masthead p {
 }
 
 .card-alignment {
-  margin-top: 10% !important;
+  margin-top: 8% !important;
 }
 
+.toast {
+  position: fixed;
+  z-index: 9999;
+}
+
+#toast-success {
+  background-color: rgba(220, 255, 236, 0.6) !important;
+}
+
+#toast-error {
+  background-color: rgba(248, 215, 215, 0.6) !important;
+}
+
+#toast-warning {
+  background-color: rgba(255, 249, 217, 0.6) !important;
+}
+
+#login-box {
+  margin-top: 4% !important;
+  border: 1px solid grey;
+  background-color: rgba(250, 250, 250, 0.5) !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#cards {
+  border: 1px solid grey;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#jobcards {
+  background-color: rgb(248, 248, 248);
+}
+
+#jobcards:hover {
+  border: 1px solid grey;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#sidebar-footer {
+  background-color: rgb(250, 250, 250);
+}
+
+.dropdown-menu {
+  min-width: 250px;
+}
+
+.row.user-menu-text {
+  font-size: 14px;
+}
+
+.dropdown-item:hover {
+  background-color: rgba(220, 220, 220, 0.5);
+}
