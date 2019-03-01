@@ -57,9 +57,42 @@
                     <h6 style="border-left: 5px solid rgb(200, 200, 200);" class="p-2 mb-0">Latest Jobs Posted</h6>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><i class="fas fa-external-link-alt"></i> Cras justo odio</li>
-                    <li class="list-group-item"><i class="fas fa-external-link-alt"></i> Dapibus ac facilisis in</li>
-                    <li class="list-group-item"><i class="fas fa-external-link-alt"></i> Vestibulum at eros</li>
+                    {% if jobs %}
+                        {% for post in jobs %}
+                            {% if forloop.counter != 6 %}
+                                <li class="list-group-item" id="joblist">
+                                    <a href="{% url 'detailjob' post.id %}">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <img src="{{ post.image.url }}" style="height:80px;width:80px;"/>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <small class="card-title"><b>{{ post.title }}</b></small>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <small class="card-subtitle mb-2 text-muted">{{ post.author.first_name }} {{ post.author.last_name }}</small>
+                                                    <p class="card-text mb-0">
+                                                        <i class="fas fa-users"></i> : 32
+                                                    </p>
+                                                    <footer class="blockquote-footer"></footer>
+                                                    <small class="text-muted">{{ post.timestamp|timesince }} ago</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <li class="list-group-item text-center">
+                            <p>No jobs available.</p>
+                        </li>
+                    {% endif %}
                     <li class="list-group-item text-center" id="sidebar-footer"><small class="text-muted">© Copyright: jobhub.com</small></li>
                 </ul>
             </div>

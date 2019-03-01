@@ -48,18 +48,24 @@
                                     <div class="row p-3">
                                 {% endif %}
                                     <div class="col-sm-3">
-                                        <a href="#">
+                                        <a href="{% url 'detailjob' post.id %}">
                                             <div class="card" id="jobcards">
                                                 <div class="card-body">
                                                     <div class="d-flex align-items-end flex-column">
                                                         <i class="fas fa-ellipsis-h fa-sm"></i>
                                                     </div> 
-                                                    <h5 class="card-title">{{ post.title }}</h5>
-                                                    <h6 class="card-subtitle mb-2 text-muted">{{ post.timestamp }}</h6>
-                                                    <p class="card-text">
-                                                        Posted by: <br/>
-                                                        {{ post.author.first_name }} {{ post.author.last_name }}
+                                                    {% if post.image %}
+                                                    <div class="d-flex align-items-start flex-column">
+                                                        <img src="{{ post.image.url }}" alt="img" style="height:80px;width:80px;"/>
+                                                    </div> 
+                                                    {% endif %}
+                                                    <small class="card-title"><b>{{ post.title }}</b></small><br/>
+                                                    <small class="card-subtitle mb-2 text-muted">{{ post.author.first_name }} {{ post.author.last_name }}</small>
+                                                    <p class="card-text mb-0">
+                                                        <i class="fas fa-users"></i> : 32
                                                     </p>
+                                                    <footer class="blockquote-footer"></footer>
+                                                    <small class="text-muted">{{ post.timestamp|timesince }} ago</small>
                                                 </div>
                                             </div>
                                         </a>

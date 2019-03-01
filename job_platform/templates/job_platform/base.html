@@ -40,7 +40,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link {% if url_name == 'jobs' %}active{% endif %} js-scroll-trigger" href="{% url 'jobs' %}">
+                  <a class="nav-link {% if url_name == 'jobs' or url_name == 'detailjob' or url_name == 'createjob' or url_name == 'updatejob' %}active{% endif %} js-scroll-trigger" href="{% url 'jobs' %}">
                     <i class="far fa-newspaper fa-lg"></i>
                     <span style="display: block;">Jobs</span>
                   </a>

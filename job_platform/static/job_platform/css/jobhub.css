@@ -430,6 +430,14 @@ header.mastheadlogin p {
   background-color: rgb(248, 248, 248);
 }
 
+#joblist {
+  background-color: rgb(255, 255, 255);
+  transition: background-color 300ms linear;
+}
+#joblist:hover {
+  background-color: rgb(245, 245, 245);
+}
+
 #jobcards:hover {
   border: 1px solid grey;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);

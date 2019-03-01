@@ -1,0 +1,105 @@
+{% extends 'job_platform/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<div class="container" id="jobs">
+    <div class="row mb-4">
+        <div class="col-lg-8">
+            <div class="card" id="cards">
+                <div class="card-header p-0">
+                    <p class="p-2 mb-0">Job Details</p>
+                </div>
+                <div class="container-fluid p-0 m-0">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4 p-0">
+                                <div class="container-fluid">
+                                    <img src="{{ job.image.url }}" class="card-img-top" alt="img"/>
+                                </div>
+                            </div>
+                            <div class="col-md-8 p-0">
+                                <div class="row">
+                                    <div class="col-sm-10">
+                                        <h5 class="card-title"><strong>{{ job.title }}</strong></h5>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        {% if job.author.id == user.id %}
+                                            <i class="fas fa-cogs"></i>
+                                        {% else %}
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <small class="card-subtitle mb-2 text-muted">
+                                            {% if job.author.id == user.id %}
+                                                {{ job.author.first_name }} {{ job.author.last_name }} (Me)
+                                            {% else %}
+                                                {{ job.author.first_name }} {{ job.author.last_name }}
+                                            {% endif %}
+                                        </small>
+                                        <br/>
+                                        <small class="text-muted">Posted {{ job.timestamp|timesince }} ago - <i class="fas fa-users" data-toggle="tooltip" data-placement="top" title="Applicants"></i> : 32</small>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="d-flex align-items-end flex-column mr-4">
+                                            {% if job.author.id == user.id %}
+                                                <button class="btn btn-dark" disabled>Apply</button>
+                                            {% else %}
+                                                <a class="btn btn-dark" href="#">Apply</a>
+                                            {% endif %}  
+                                        </div> 
+                                    </div>
+                                </div>
+                                <footer class="blockquote-footer"></footer>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        {{ job.description|linebreaks }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <h6>People also viewed</h6>
+            <ul class="list-group list-group-flush">
+                {% for post in jobs %}
+                    {% if forloop.counter != 11 %}
+                        <li class="list-group-item" id="joblist">
+                            <a href="{% url 'detailjob' post.id %}">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <img src="{{ post.image.url }}" style="height:80px;width:80px;"/>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <small class="card-title"><b>{{ post.title }}</b></small>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <small class="card-subtitle mb-2 text-muted">{{ post.author.first_name }} {{ post.author.last_name }}</small>
+                                            <p class="card-text mb-0">
+                                                <i class="fas fa-users"></i> : 32
+                                            </p>
+                                            <footer class="blockquote-footer"></footer>
+                                            <small class="text-muted">{{ post.timestamp|timesince }} ago</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
