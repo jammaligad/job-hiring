@@ -69,19 +69,3 @@ def updatejob(request, job_id):
     else:
         form = JobPostForm(instance=job)
         return render(request, 'job_platform/updatejob.html', {'form': form, 'title': title})
-
-@login_required
-def updateprofile(request):
-    title = 'Profile'
-    profile = Profile.objects.get(user=request.user)
-
-    if request.method == 'POST':
-        form = JobPostForm(request.POST, request.FILES, instance=profile)
-        if form.is_valid():
-            form.save()
-            return redirect('profile')
-        else:
-            render(request, 'job_platform/profile.html', {'form': form, 'title': title})
-    else:
-        form = JobPostForm(instance=profile)
-        return render(request, 'job_platform/profile.html', {'form': form, 'title': title})
