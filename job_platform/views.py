@@ -1,8 +1,23 @@
 from django.shortcuts import render, redirect
-from .models import JobPost
-from .forms import JobPostForm
+from .models import JobPost, Application, Profile
+from .forms import JobPostForm, ProfileForm, ApplicationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+
+@login_required
+def profile(request):
+    title = 'Profile'
+    profile = Profile.objects.get(user=request.user)
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+        else:
+            render(request, 'job_platform/profile.html', {'form': form, 'title': title})
+    else:
+        form = ProfileForm(instance=profile)
+        return render(request, 'job_platform/profile.html', {'profile': profile, 'form': form})
 
 @login_required
 def home(request):
@@ -18,6 +33,7 @@ def jobs(request):
 
 @login_required
 def createjob(request):
+    title = 'Jobs'
     if request.method == 'POST':
         form = JobPostForm(request.POST, request.FILES)
         if form.is_valid():
@@ -26,19 +42,21 @@ def createjob(request):
             instance.save()
             return redirect('jobs')
         else:
-            return render(request, 'job_platform/createjob.html', {'form': form})
+            return render(request, 'job_platform/createjob.html', {'form': form, 'title': title})
     else:
         form = JobPostForm()
-        return render(request, 'job_platform/createjob.html', {'form': form})
+        return render(request, 'job_platform/createjob.html', {'form': form, 'title': title})
 
 @login_required
 def detailjob(request, job_id):
+    title = 'Jobs'
     job = JobPost.objects.get(id=job_id)
     posts = JobPost.objects.exclude(id=job_id)
-    return render(request, 'job_platform/detailjob.html', {'job': job, 'jobs': posts})
+    return render(request, 'job_platform/detailjob.html', {'job': job, 'jobs': posts, 'title': title})
 
 @login_required
 def updatejob(request, job_id):
+    title = 'Jobs'
     job = JobPost.objects.get(id=job_id)
 
     if request.method == 'POST':
@@ -47,7 +65,23 @@ def updatejob(request, job_id):
             form.save()
             return redirect('jobs')
         else:
-            render(request, 'job_platform/updatejob.html', {'form': form})
+            render(request, 'job_platform/updatejob.html', {'form': form, 'title': title})
     else:
         form = JobPostForm(instance=job)
-        return render(request, 'job_platform/updatejob.html', {'form': form})
+        return render(request, 'job_platform/updatejob.html', {'form': form, 'title': title})
+
+@login_required
+def updateprofile(request):
+    title = 'Profile'
+    profile = Profile.objects.get(user=request.user)
+
+    if request.method == 'POST':
+        form = JobPostForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+        else:
+            render(request, 'job_platform/profile.html', {'form': form, 'title': title})
+    else:
+        form = JobPostForm(instance=profile)
+        return render(request, 'job_platform/profile.html', {'form': form, 'title': title})

@@ -6,6 +6,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('home/', views.home, name="home"),
+    path('profile/', views.profile, name="profile"),
     path('jobs/', views.jobs, name="jobs"),
     path('jobs/createjob/', views.createjob, name="createjob"),
     path('jobs/<int:job_id>/', views.detailjob, name="detailjob"),
