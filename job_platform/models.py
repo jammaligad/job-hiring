@@ -41,10 +41,9 @@ class JobPost(models.Model):
         ordering = ["-timestamp", "-updated"]
 
 class Application(models.Model):
-    jobpost = models.ForeignKey(JobPost, on_delete=models.CASCADE, editable=False, related_name='post')
-    applicant = models.ForeignKey(Profile, editable=False, on_delete=models.CASCADE)
+    jobpost = models.ForeignKey(JobPost, on_delete=models.CASCADE, editable=False, related_name='post', blank=True, null=True)
+    applicant = models.ForeignKey(User, editable=False, on_delete=models.CASCADE, related_name='recruits')
     description = models.TextField()
-#    documents = models.FileField(upload_to='docs/', null=True, blank=True)
     updated = models.DateTimeField(auto_now=True, auto_now_add=False)
     date_applied = models.DateTimeField(auto_now=False, auto_now_add=True)
     archived = models.BooleanField(default=False, editable=False)

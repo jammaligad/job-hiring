@@ -22,13 +22,13 @@ def profile(request):
 @login_required
 def home(request):
     title = 'Home'
-    posts = JobPost.objects.all()
+    posts = JobPost.objects.select_related('author')
     return render(request, 'job_platform/home.html', {'title': title, 'jobs': posts})
 
 @login_required
 def jobs(request):
     title = 'Jobs'
-    posts = JobPost.objects.all()
+    posts = JobPost.objects.select_related('author')
     return render(request, 'job_platform/jobs.html', {'title': title, 'jobs': posts})
 
 @login_required
@@ -52,7 +52,19 @@ def detailjob(request, job_id):
     title = 'Jobs'
     job = JobPost.objects.get(id=job_id)
     posts = JobPost.objects.exclude(id=job_id)
-    return render(request, 'job_platform/detailjob.html', {'job': job, 'jobs': posts, 'title': title})
+    if request.method=='POST':
+        form = ApplicationForm(request.POST)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.jobpost = job
+            instance.applicant = request.user
+            instance.save()
+            return redirect('jobs')
+        else:
+            return render(request, 'job_platform/detailjob.html', {'job': job, 'jobs': posts, 'title': title, 'form': form})
+    else:
+        form = ApplicationForm()
+        return render(request, 'job_platform/detailjob.html', {'job': job, 'jobs': posts, 'title': title, 'form': form})
 
 @login_required
 def updatejob(request, job_id):
