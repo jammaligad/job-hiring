@@ -26,7 +26,7 @@
                                     </div>
                                     <div class="col-sm-2">
                                         {% if job.author.id == user.id %}
-                                            <i class="fas fa-cogs"></i>
+                                            <a href="#" data-toggle="modal" data-target="#EditJobDetails"><i class="fas fa-cogs"></i></a>
                                         {% else %}
                                             <i class="fas fa-ellipsis-h"></i>
                                         {% endif %}
@@ -36,20 +36,24 @@
                                     <div class="col-sm-8">
                                         <small class="card-subtitle mb-2 text-muted">
                                             {% if job.author.id == user.id %}
-                                                {{ job.author.first_name }} {{ job.author.last_name }} (Me)
+                                                {{ job.author.first_name }} {{ job.author.last_name }} (Me) | {{ job.author.profile.company }}
                                             {% else %}
-                                                {{ job.author.first_name }} {{ job.author.last_name }}
+                                                {{ job.author.first_name }} {{ job.author.last_name }} | {{ job.author.profile.company }}
                                             {% endif %}
                                         </small>
                                         <br/>
-                                        <small class="text-muted">Posted {{ job.timestamp|timesince }} ago - <i class="fas fa-users" data-toggle="tooltip" data-placement="top" title="Applicants"></i> : {{ job.post.all.count }}</small>
+                                        <small class="text-muted">
+                                            Posted {{ job.timestamp|timesince }} ago - 
+                                            <i class="fas fa-users" data-toggle="tooltip" data-placement="top" title="Applicants"></i>
+                                             : {{ job.post.all.count }}
+                                            </small>
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="d-flex align-items-end flex-column mr-4">
                                             {% if job.author.id == user.id %}
                                                 <button class="btn btn-dark" disabled>Apply</button>
                                             {% else %}
-                                                <a class="btn btn-dark" href="#" data-toggle="modal" data-target="#exampleModalCenter">Apply</a>
+                                                <a class="btn btn-dark" href="#" data-toggle="modal" data-target="#ApplicationForm">Apply</a>
                                             {% endif %}  
                                         </div> 
                                     </div>
@@ -57,7 +61,11 @@
                                 <footer class="blockquote-footer"></footer>
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        {{ job.description|linebreaks }}
+                                        {{ job.description|linebreaks }} 
+                                        <footer class="blockquote-footer"></footer>
+                                    {% if job.updated %}
+                                        <small class="text-muted">Updated {{ job.updated }}</small>
+                                    {% endif %}                  
                                     </div>
                                 </div>
                             </div>
@@ -75,7 +83,7 @@
                             <a href="{% url 'detailjob' post.id %}">
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <img src="{{ post.image.url }}" style="height:80px;width:80px;"/>
+                                    <img src="{{ post.image.url }}" style="height:60x;width:60px;"/>
                                 </div>
                                 <div class="col-sm-9">
                                     <div class="row">
@@ -85,10 +93,11 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <small class="card-subtitle mb-2 text-muted">{{ post.author.first_name }} {{ post.author.last_name }}</small>
-                                            <p class="card-text mb-0">
+                                            <small class="card-subtitle mb-2 text-muted">{{ post.author.first_name }} {{ post.author.last_name }} | {{ post.author.profile.company }} </small>
+                                            <br/>
+                                            <small class="card-text mb-0 text-muted">
                                                 <i class="fas fa-users"></i> : {{ post.post.all.count }}
-                                            </p>
+                                            </small>
                                             <footer class="blockquote-footer"></footer>
                                             <small class="text-muted">{{ post.timestamp|timesince }} ago</small>
                                         </div>
@@ -111,7 +120,7 @@
                     </div>
                     <div class="container-fluid p-0 m-0">
                         <div class="card-body">
-                            {% if job.post %}
+                            {% if job.post.all > 0 %}
                                 {% for applicant in job.post.all %}
                                     {% if forloop.counter|modulo:4 == 1 %}
                                         <div class="row p-1">
@@ -149,7 +158,7 @@
             </div>
         </div>
     {% else %}
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" id="ApplicationForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
             <div class="modal-header">
@@ -165,7 +174,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-dark">Save</button>
+                <button type="submit" class="btn btn-dark" name='applyjob'>Save</button>
                 </form>
             </div>
             </div>
@@ -174,4 +183,27 @@
     {% endif %}
 </div>
 
+<div class="modal fade" id="EditJobDetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">Edit Job Post</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <img src="{{ job.image.url }}" class="mx-auto d-block" style="height:150px; width:150px;"/>
+            <form method="POST">
+                {% csrf_token %}
+                {{ jobform|crispy }}
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-dark" name='editjob'>Save</button>
+            </form>
+        </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

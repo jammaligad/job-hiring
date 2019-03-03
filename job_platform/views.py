@@ -53,18 +53,27 @@ def detailjob(request, job_id):
     job = JobPost.objects.get(id=job_id)
     posts = JobPost.objects.exclude(id=job_id)
     if request.method=='POST':
-        form = ApplicationForm(request.POST)
-        if form.is_valid():
-            instance = form.save(commit=False)
-            instance.jobpost = job
-            instance.applicant = request.user
-            instance.save()
-            return redirect('jobs')
-        else:
-            return render(request, 'job_platform/detailjob.html', {'job': job, 'jobs': posts, 'title': title, 'form': form})
+        if 'applyjob' in request.POST:
+            form = ApplicationForm(request.POST)
+            if form.is_valid():
+                instance = form.save(commit=False)
+                instance.jobpost = job
+                instance.applicant = request.user
+                instance.save()
+                return redirect('jobs')
+            else:
+                return render(request, 'job_platform/detailjob.html', {'job': job, 'jobs': posts, 'title': title, 'form': form})
+        elif 'editjob' in request.POST:
+            form = JobPostForm(request.POST, instance=job)
+            if form.is_valid():
+                form.save()
+                return redirect('jobs')
+            else:
+                render(request, 'job_platform/detailjob.html', {'form': form, 'title': title})
     else:
         form = ApplicationForm()
-        return render(request, 'job_platform/detailjob.html', {'job': job, 'jobs': posts, 'title': title, 'form': form})
+        jobform = JobPostForm(instance=job)
+        return render(request, 'job_platform/detailjob.html', {'job': job, 'jobs': posts, 'title': title, 'form': form, 'jobform': jobform})
 
 @login_required
 def updatejob(request, job_id):

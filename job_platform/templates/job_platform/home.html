@@ -64,7 +64,7 @@
                                     <a href="{% url 'detailjob' post.id %}">
                                     <div class="row">
                                         <div class="col-sm-3">
-                                            <img src="{{ post.image.url }}" style="height:80px;width:80px;"/>
+                                            <img src="{{ post.image.url }}" style="height:60px;width:60px;"/>
                                         </div>
                                         <div class="col-sm-9">
                                             <div class="row">
@@ -75,9 +75,10 @@
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <small class="card-subtitle mb-2 text-muted">{{ post.author.first_name }} {{ post.author.last_name }} | {{ post.author.profile.company }}</small>
-                                                    <p class="card-text mb-0">
-                                                        <i class="fas fa-users"></i> : 32
-                                                    </p>
+                                                    <br />
+                                                    <small class="card-text mb-0 text-muted">
+                                                        <i class="fas fa-users"></i> : {{ post.post.all.count }}
+                                                    </small>
                                                     <footer class="blockquote-footer"></footer>
                                                     <small class="text-muted">{{ post.timestamp|timesince }} ago</small>
                                                 </div>

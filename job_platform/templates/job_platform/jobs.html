@@ -5,37 +5,6 @@
 {% block content %}
 <div class="container" id="jobs">
     <div class="row mb-4">
-        <div class="col-lg-12">
-            <div class="card" id="cards">
-                <div class="card-header text-center p-0">
-                    <p class="p-2 mb-0">Categories</p>
-                </div>
-                <div class="card-body">
-                    <div class="row p-3">
-                        <div class="col-sm-2">
-                            <img src="{% static 'job_platform/images/footer1.jpg'%}" class="img-fluid" alt="">
-                        </div>
-                        <div class="col-sm-2">
-                            <img src="{% static 'job_platform/images/footer2.jpg'%}" class="img-fluid" alt="">
-                        </div>
-                        <div class="col-sm-2">
-                            <img src="{% static 'job_platform/images/footer2.jpg'%}" class="img-fluid" alt="">
-                        </div>
-                        <div class="col-sm-2">
-                            <img src="{% static 'job_platform/images/footer2.jpg'%}" class="img-fluid" alt="">
-                        </div>
-                        <div class="col-sm-2">
-                            <img src="{% static 'job_platform/images/footer2.jpg'%}" class="img-fluid" alt="">
-                        </div>
-                        <div class="col-sm-2">
-                            <img src="{% static 'job_platform/images/footer2.jpg'%}" class="img-fluid" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row mb-4">
             <div class="col-lg-12">
                 <div class="card" id="cards">
                     <div class="card-header text-center p-0">
@@ -62,7 +31,7 @@
                                                     <small class="card-title"><b>{{ post.title }}</b></small><br/>
                                                     <small class="card-subtitle mb-2 text-muted">{{ post.author.first_name }} {{ post.author.last_name }} | {{ post.author.profile.company }} </small>
                                                     <p class="card-text mb-0">
-                                                        <i class="fas fa-users"></i> : 32
+                                                        <i class="fas fa-users"></i> : {{ post.post.all.count }}
                                                     </p>
                                                     <footer class="blockquote-footer"></footer>
                                                     <small class="text-muted">{{ post.timestamp|timesince }} ago</small>
