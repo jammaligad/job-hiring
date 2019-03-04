@@ -29,7 +29,7 @@ class JobPost(models.Model):
     description = models.TextField()
     updated = models.DateTimeField(auto_now=True, auto_now_add=False)
     timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
-    archived = models.BooleanField(default=False, editable=False)
+    archived = models.BooleanField(default=False, editable=True)
 
     def __unicode__(self):
         return self.title

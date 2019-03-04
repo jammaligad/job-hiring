@@ -22,7 +22,7 @@ class ProfileForm(ModelForm):
 class JobPostForm(ModelForm):
     class Meta:
         model = JobPost
-        exclude = ['id']
+        exclude = ['id', 'archived']
 
 class ApplicationForm(ModelForm):
     class Meta:

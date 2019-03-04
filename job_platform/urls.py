@@ -11,4 +11,5 @@ urlpatterns = [
     path('jobs/createjob/', views.createjob, name="createjob"),
     path('jobs/<int:job_id>/', views.detailjob, name="detailjob"),
     path('jobs/<int:job_id>/update/', views.updatejob, name="updatejob"),
+    path('<int:job_id>/archive', views.archive, name='archive'),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
