@@ -18,7 +18,8 @@ def index(request):
             else:
                 messages.warning(request, f'Warning! Please try again.')
                 messagesheader = 'Warning'
-                return render(request, 'users/signup.html', {'messagesheader': messagesheader})
+                regform = UserRegisterForm()
+                return render(request, 'users/signup.html', {'regform': regform, 'messagesheader': messagesheader})
         elif 'loginbtn' in request.POST:
             username = request.POST['username']
             password = request.POST['password1']

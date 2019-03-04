@@ -82,38 +82,40 @@
             <h6>People also viewed</h6>
             <ul class="list-group list-group-flush">
                 {% for post in jobs %}
-                    {% if forloop.counter != 11 %}
-                        <li class="list-group-item" id="joblist">
-                            <a href="{% url 'detailjob' post.id %}">
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    {% if post.image %}
-                                        <img src="{{ post.image.url }}" style="height:60x;width:60px;"/>
-                                    {% else %}
-                                        <img src="../../static/job_platform/images/jobhub.png" style="height:60x;width:60px;"/>
-                                    {% endif %}
-                                </div>
-                                <div class="col-sm-9">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <small class="card-title"><b>{{ post.title }}</b></small>
+                    {% if not post.archived %}
+                        {% if forloop.counter != 11 %}
+                            <li class="list-group-item" id="joblist">
+                                <a href="{% url 'detailjob' post.id %}">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        {% if post.image %}
+                                            <img src="{{ post.image.url }}" style="height:60x;width:60px;"/>
+                                        {% else %}
+                                            <img src="../../static/job_platform/images/jobhub.png" style="height:60x;width:60px;"/>
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <small class="card-title"><b>{{ post.title }}</b></small>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <small class="card-subtitle mb-2 text-muted">{{ post.author.first_name }} {{ post.author.last_name }} | {{ post.author.profile.company }} </small>
+                                                <br/>
+                                                <small class="card-text mb-0 text-muted">
+                                                    <i class="fas fa-users"></i> : {{ post.post.all.count }}
+                                                </small>
+                                                <footer class="blockquote-footer"></footer>
+                                                <small class="text-muted">{{ post.timestamp|timesince }} ago</small>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <small class="card-subtitle mb-2 text-muted">{{ post.author.first_name }} {{ post.author.last_name }} | {{ post.author.profile.company }} </small>
-                                            <br/>
-                                            <small class="card-text mb-0 text-muted">
-                                                <i class="fas fa-users"></i> : {{ post.post.all.count }}
-                                            </small>
-                                            <footer class="blockquote-footer"></footer>
-                                            <small class="text-muted">{{ post.timestamp|timesince }} ago</small>
-                                        </div>
-                                    </div>
                                 </div>
-                            </div>
-                            </a>
-                        </li>
+                                </a>
+                            </li>
+                        {% endif %}
                     {% endif %}
                 {% endfor %}
             </ul>

@@ -14,8 +14,8 @@
                 <div class="content-section">
                     <div class="row mb-4">
                         <div class="col-md-12">
-                            <a href="#"><img src="{{ profile.displaypic.url }}" class="mx-auto d-block rounded-circle" width="200px" height="200px" /></a>
-                            <h2 class="mx-auto d-block text-center">{{ profile.user.first_name }} {{ profile.user.last_name }}</h2>
+                            <a href="#" data-toggle="modal" data-target="#exampleModalCenter"><img src="{{ profile.displaypic.url }}" class="mx-auto d-block rounded-circle" width="200px" height="200px" /></a>
+                            <h2 class="mx-auto d-block text-center mt-4">{{ profile.user.first_name }} {{ profile.user.last_name }}</h2>
                             {% if profile.company|length > 0 %}
                                 <p class="mx-auto d-block text-center text-muted">{{ profile.company }}</p>
                             {% else %}
