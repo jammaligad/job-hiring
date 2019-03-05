@@ -60,11 +60,21 @@
                                                     {% endif %}
                                                     <small class="card-title"><b>{{ post.title }}</b></small><br/>
                                                     <small class="card-subtitle mb-2 text-muted">{{ post.author.first_name }} {{ post.author.last_name }} | {{ post.author.profile.company }} </small>
-                                                    <p class="card-text mb-0">
+                                                    <br/>
+                                                    <small class="card-text mb-0 text-muted">
                                                         <i class="fas fa-users"></i> : {{ post.post.all.count }}
-                                                    </p>
+                                                    </small>
                                                     <footer class="blockquote-footer"></footer>
                                                     <small class="text-muted">{{ post.timestamp|timesince }} ago</small>
+                                                    {% if post.archived %}
+                                                        <div class="d-flex align-items-start">
+                                                            <span class="badge badge-info">Archived</span>
+                                                        </div>
+                                                    {% else %}
+                                                        <div class="d-flex align-items-start">
+                                                            <span class="badge badge-success">Active</span>
+                                                        </div>
+                                                    {% endif %}
                                                 </div>
                                             </div>
                                         </a>
